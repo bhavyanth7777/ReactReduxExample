@@ -1,8 +1,11 @@
+// TYPES
 export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED'
 export const INCREMENT = 'counter/INCREMENT'
 export const DECREMENT_REQUESTED = 'counter/DECREMENT_REQUESTED'
 export const DECREMENT = 'counter/DECREMENT'
 
+
+// RECIPES / STATE MANIPULATION
 const initialState = {
   count: 0,
   isIncrementing: false,
@@ -20,7 +23,7 @@ export default (state = initialState, action) => {
     case INCREMENT:
       return {
         ...state,
-        count: state.count + 1,
+        count: state.count + action.payload,
         isIncrementing: !state.isIncrementing
       }
 
@@ -42,15 +45,21 @@ export default (state = initialState, action) => {
   }
 }
 
+// ACTIONS - All Ajax calls, all functionalities etc.. function bodies etc..
+
 export const increment = () => {
   return dispatch => {
+    // ajax call
+    let data = 2;
+    
     dispatch({
       type: INCREMENT_REQUESTED
     })
 
     dispatch({
-      type: INCREMENT
-    })
+      type: INCREMENT,
+      payload: data
+    });
   }
 }
 
